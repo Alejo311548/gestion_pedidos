@@ -39,11 +39,5 @@ https://gestion-pedidos-5yp1.vercel.app/
 
 ---
 
-##  Instalación local
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/gestion-pedidos.git
-   cd gestion-pedidos
 
 
