@@ -1,51 +1,23 @@
-import { supabase } from '@/lib/supabaseClient'
 import { NextResponse } from 'next/server'
+import { supabase } from '@/lib/supabaseClient'
 
-export async function GET() {
+export async function GET(request: Request, context: { params: { id: string } }) {
+  const id = context.params.id
+
   const { data, error } = await supabase
     .from('maestros')
-    .select('id, nombre, saldo_inicial, creado_por, creado_en')
-    .order('creado_en', { ascending: false })
+    .select('id, nombre, saldo_inicial')
+    .eq('id', id)
+    .single()
 
-  if (error || !data) {
-    return NextResponse.json({ error: error?.message || 'Error desconocido' }, { status: 500 })
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  const { data: usuarios, error: errorUsuarios } = await supabase
-    .from('users')
-    .select('id, email')
-
-  if (errorUsuarios || !usuarios) {
-    return NextResponse.json({ error: 'Error al cargar usuarios' }, { status: 500 })
-  }
-
-  const maestrosConEmail = data.map((m) => ({
-    ...m,
-    creado_por_email: usuarios.find((u) => u.id === m.creado_por)?.email || 'Desconocido'
-  }))
-
-  return NextResponse.json(maestrosConEmail)
-}
-
-export async function POST(req: Request) {
-  try {
-    const body = await req.json()
-    const { nombre, saldo_inicial, creado_por } = body
-
-    if (!nombre || saldo_inicial == null || !creado_por) {
-      return NextResponse.json({ error: 'Campos faltantes' }, { status: 400 })
-    }
-
-    const { error } = await supabase.from('maestros').insert([
-      { nombre, saldo_inicial, creado_por }
-    ])
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
-    }
-
-    return NextResponse.json({ message: 'Maestro creado' })
-  } catch (e) {
-    return NextResponse.json({ error: 'Error inesperado en el servidor' }, { status: 500 })
-  }
+  
+  return NextResponse.json({
+    id: data.id,
+    nombre: data.nombre,
+    saldo: data.saldo_inicial, 
+  })
 }
