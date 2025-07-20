@@ -7,10 +7,10 @@ Este es un sistema web completo para la gestión de pedidos, desarrollado con **
 
 # Para ingresar como administrador:  
 
-Correo: admin@admin.com
+Correo: admin@admin.com  
 Contraseña: 12345678
 
-# Para ingresar como usuario
+# Para ingresar como usuario:
 
 Registrarse mediante el formulario de registro.
 
