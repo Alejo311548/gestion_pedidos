@@ -3,15 +3,16 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const id = parseInt(params.id)
+  const { id } = await context.params
+  const parsedId = parseInt(id)
 
   // Obtener maestro y su saldo_inicial
   const { data: maestro, error: errorMaestro } = await supabase
     .from('maestros')
     .select('saldo_inicial')
-    .eq('id', id)
+    .eq('id', parsedId)
     .single()
 
   if (errorMaestro || !maestro) {
@@ -22,7 +23,7 @@ export async function GET(
   const { data: movimientos, error: errorMov } = await supabase
     .from('movimientos')
     .select('tipo, valor')
-    .eq('maestro_id', id)
+    .eq('maestro_id', parsedId)
 
   if (errorMov || !movimientos) {
     return NextResponse.json({ error: 'No se pudieron obtener los movimientos' }, { status: 500 })
