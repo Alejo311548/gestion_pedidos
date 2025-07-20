@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Gestión de Pedidos
 
-## Getting Started
+# Alejandro Vargas Ocampo  
+Ingeniería Web
 
-First, run the development server:
+Este es un sistema web completo para la gestión de pedidos, desarrollado con **Next.js 14 (App Router)**, **Supabase** como backend (Base de datos + Auth), y **TailwindCSS** para estilos.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
+# Aplicación en vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://gestion-pedidos-5yp1.vercel.app/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##  Funcionalidades
 
-## Learn More
+-  Registro y login de usuarios (almacenamiento personalizado con `users`)
+-  Roles: `ADMIN` y `USER`, con navegación condicional
+-  Gestión de Maestros (con saldo inicial)
+-  Registro y visualización de Transacciones (entradas y salidas)
+-  Dashboard de bienvenida por usuario
+-  Protección de rutas privadas con middleware
+-  Sidebar con navegación y botón de cierre de sesión
+-  UI responsiva y moderna con TailwindCSS
+-  Totalmente sin funciones almacenadas ni triggers SQL (toda lógica en JavaScript)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Tecnologías Utilizadas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [Next.js 14 (App Router)](https://nextjs.org/docs)
+- [Supabase](https://supabase.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vercel](https://vercel.com/) para despliegue
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+##  Instalación local
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/gestion-pedidos.git
+   cd gestion-pedidos
+
+
