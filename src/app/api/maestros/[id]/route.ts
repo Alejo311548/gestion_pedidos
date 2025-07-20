@@ -1,8 +1,8 @@
 import { supabase } from '@/lib/supabaseClient'
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server' // Importa NextRequest
 
 export async function GET(
-  req: Request,
+  req: NextRequest, 
   { params }: { params: { id: string } }
 ) {
   const id = parseInt(params.id)
