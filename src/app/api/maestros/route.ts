@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabaseClient'
 
-export async function GET(request: Request, context: { params: { id: string } }) {
-  const id = context.params.id
+
+export async function GET(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id
 
   const { data, error } = await supabase
     .from('maestros')
@@ -14,10 +18,9 @@ export async function GET(request: Request, context: { params: { id: string } })
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  
   return NextResponse.json({
     id: data.id,
     nombre: data.nombre,
-    saldo: data.saldo_inicial, 
+    saldo: data.saldo_inicial,
   })
 }
